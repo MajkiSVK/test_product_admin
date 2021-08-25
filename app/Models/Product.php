@@ -18,4 +18,13 @@ class Product extends Model
         'name',
         'description',
     ];
+
+    /**
+     * Many to many relationship with Categories table
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

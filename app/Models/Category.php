@@ -17,4 +17,13 @@ class Category extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Many to many relationshipwith Products table
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }
