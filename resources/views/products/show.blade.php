@@ -1,93 +1,71 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('product.view') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <x-guest-layout>
+@extends('products.master')
+    @section('content')
 
 
+        <article>
+            <!-- Name -->
 
-                            <!-- Validation Errors -->
-                            <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                            <x-success-message />
+           <header>
+               <h1>
+                   <strong>
+                       {{$product->name}}
+                   </strong>
+               </h1>
+               <hr>
+           </header>
 
+            <!-- ID -->
+            <strong class="text-sm">ID:</strong>
+            <p>
+                {{$product->id}}
+            </p>
 
-                            <article>
-                            <!-- Name -->
+            <!-- Unique hash code -->
+            <strong class="text-sm text">{{__('product.unique_hash')}}:</strong>
+            <p>
+                {{$product->unique_hash}}
+            </p>
 
-                               <header>
-                                   <h1>
-                                       <strong>
-                                           {{$product->name}}
-                                       </strong>
-                                   </h1>
-                                   <hr>
-                               </header>
+            <!-- Description -->
+            <strong class="text-sm">{{__('product.desc')}}</strong>
+            <p>
+                {{$product->description}}
+            </p>
 
-                                <!-- ID -->
-                                <strong class="text-sm">ID:</strong>
-                                <p>
-                                    {{$product->id}}
-                                </p>
+            <!-- created at -->
+            <strong class="text-sm">{{__('product.created_at')}}</strong>
+            <p>
+                {{$product->created_at}}
+            </p>
 
-                                <!-- Unique hash code -->
-                                <strong class="text-sm text">{{__('product.unique_hash')}}:</strong>
-                                <p>
-                                    {{$product->unique_hash}}
-                                </p>
-
-                                <!-- Description -->
-                                <strong class="text-sm">{{__('product.desc')}}</strong>
-                                <p>
-                                    {{$product->description}}
-                                </p>
-
-                                <!-- created at -->
-                                <strong class="text-sm">{{__('product.created_at')}}</strong>
-                                <p>
-                                    {{$product->created_at}}
-                                </p>
-
-                                <!-- updated at -->
-                                <strong class="text-sm">{{__('product.updated_at')}}</strong>
-                                <p>
-                                    {{$product->updated_at}}
-                                </p>
+            <!-- updated at -->
+            <strong class="text-sm">{{__('product.updated_at')}}</strong>
+            <p>
+                {{$product->updated_at}}
+            </p>
 
 
 
-                                <!-- Edit button -->
-                                <div class="flex items-center justify-end mt-4">
+            <!-- Edit button -->
+            <div class="flex items-center justify-end mt-4">
 
-                                    <a href="{{route('product.edit', $product->unique_hash)}}"
-                                        <x-button class="ml-4 bg-blue-200">
-                                          {{ __('product.edit') }}
-                                        </x-button>
-                                   </a>
-                                </div>
-
-                                <!-- Delete button -->
-                                <div class="flex items-center justify-end mt-4">
-
-                                    <a href="{{route('product.destroy',$product->unique_hash)}}"
-                                    <x-button class="ml-4 bg-blue-200">
-                                        {{ __('product.destroy') }}
-                                    </x-button>
-                                    </a>
-                                </div>
-
-                            </article>
-
-                    </x-guest-layout>
-
-                </div>
+                <a href="{{route('product.edit', $product->unique_hash)}}"
+                    <x-button class="ml-4 bg-blue-200">
+                      {{ __('product.edit') }}
+                    </x-button>
+               </a>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+
+            <!-- Delete button -->
+            <div class="flex items-center justify-end mt-4">
+
+                <a href="{{route('product.destroy',$product->unique_hash)}}"
+                <x-button class="ml-4 bg-blue-200">
+                    {{ __('product.destroy') }}
+                </x-button>
+                </a>
+            </div>
+
+        </article>
+
+    @stop
