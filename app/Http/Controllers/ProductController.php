@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -72,16 +70,16 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request): RedirectResponse
     {
-        $this->productService->StoreNewProduct($request->validated());
+        $product=$this->productService->StoreNewProduct($request->validated());
 
-        return back()->with('message', trans('product.created'));
+        return redirect(route('product.show', $product->unique_hash))->with('message', __('product.created'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return View
      */
     public function show($id)
     {
@@ -116,7 +114,8 @@ class ProductController extends Controller
     {
         $product =$this->productService->UpdateExistingProduct($request->validated(), $id);
 
-        return redirect(route('product.show', $product->unique_hash));
+        return redirect(route('product.show', $product->unique_hash))
+            ->with('message', __('product.eddited'));
     }
 
 

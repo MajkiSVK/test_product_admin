@@ -1,4 +1,7 @@
 @extends('products.master')
+    @section('title')
+        {{__('product.edit_existing')}}
+    @stop
     @section('content')
 
         <form method="POST" action="{{ route('product.update', $product->unique_hash) }}">
@@ -34,7 +37,7 @@
 
             <!-- categories list -->
             <div class="mt-4">
-                <x-label for="categories" value="{{trans('product.categories')}}" />
+                <x-label for="categories" value="{{__('product.categories')}}" />
 
                 @forelse($categories as $category)
 

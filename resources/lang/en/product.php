@@ -28,5 +28,10 @@ return [
     'nothing' => 'there are no products',
     'categories' => 'Categories',
     'empty_categories' => 'There are no categories',
+    'edit_existing' => 'Edit product',
+    'show' => 'Product details',
+    'homepage' => 'Home',
+    'eddited' => 'Product was eddited',
+    'create' => 'Create',
 
 ];
