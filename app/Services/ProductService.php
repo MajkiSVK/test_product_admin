@@ -34,4 +34,16 @@ class ProductService
         $product->categories()->sync($validatedData['categories']);
         return $product;
     }
+
+    /**
+     * @param array $validatedData
+     * @param string $id
+     * @return Product
+     */
+    public function UpdateExistingProduct(array $validatedData, string $id): Product
+    {
+        $product = $this->productRepository->UpdateProductByHash($validatedData,$id);
+        $product->categories()->sync($validatedData['categories']);
+        return $product;
+    }
 }

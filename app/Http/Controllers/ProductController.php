@@ -99,7 +99,9 @@ class ProductController extends Controller
     public function edit(string $id): View
     {
         return \view('products.edit')
-            ->with('product', $this->productRepository->GetProductByHash($id));
+            ->with('product', $this->productRepository->GetProductByHash($id))
+            ->with('categories', $this->categoryRepository->GetAllCategories()->toArray())
+            ->with('product_categories',$this->productRepository->GetProductByHash($id)->categories()->pluck('id')->toArray());
     }
 
 
@@ -112,7 +114,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id):RedirectResponse
     {
-       $product = $this->productRepository->UpdateProductByHash($request->validated(),$id);
+        $product =$this->productService->UpdateExistingProduct($request->validated(), $id);
+
         return redirect(route('product.show', $product->unique_hash));
     }
 

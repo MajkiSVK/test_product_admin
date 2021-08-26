@@ -32,6 +32,20 @@
                 <x-input id="description" class="block mt-1 w-full" type="text" name="description" value="{{old('description', $product->description)}}" required />
             </div>
 
+            <!-- categories list -->
+            <div class="mt-4">
+                <x-label for="categories" value="{{trans('product.categories')}}" />
+
+                @forelse($categories as $category)
+
+                @if(in_array($category['id'], $product_categories))
+                        <x-input id="categories" class="mt-1 ml-3" type="checkbox" name="categories[]" value="{{$category['id']}}" checked />{{$category['name']}}
+                    @else
+                        <x-input id="categories" class="mt-1 ml-3" type="checkbox" name="categories[]" value="{{$category['id']}}" />{{$category['name']}}
+                    @endif
+                @empty
+                    {{__('product.empty_categories')}}
+                @endforelse
 
 
             <div class="flex items-center justify-end mt-4">
