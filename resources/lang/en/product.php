@@ -25,5 +25,6 @@ return [
     'edit' => 'Edit',
     'destroy' => 'Delete',
     'deleted' => 'Product is deleted',
+    'nothing' => 'there are no products',
 
 ];

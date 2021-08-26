@@ -5,6 +5,7 @@ namespace App\Repository;
 
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductRepository
 {
@@ -45,5 +46,13 @@ class ProductRepository
         $product->save();
         return $product;
 
+    }
+
+    /**
+     * @return Collection
+     */
+    public function GetAllProducts():Collection
+    {
+        return Product::all();
     }
 }

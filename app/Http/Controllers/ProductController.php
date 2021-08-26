@@ -37,11 +37,12 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return \view('products.home')
+            ->with('products', $this->productRepository->GetAllProducts());
     }
 
     /**
