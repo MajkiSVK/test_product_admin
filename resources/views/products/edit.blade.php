@@ -34,7 +34,7 @@
 
             <!-- categories list -->
             <div class="mt-4">
-                <x-label for="categories" value="{{trans('product.categories')}}" />
+                <x-label for="categories" value="{{__('product.categories')}}" />
 
                 @forelse($categories as $category)
 
