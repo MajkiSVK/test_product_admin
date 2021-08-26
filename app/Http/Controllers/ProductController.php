@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Http\RedirectResponse;
@@ -21,17 +22,24 @@ class ProductController extends Controller
      * @var ProductRepository
      */
     private $productRepository;
+    /**
+     * @var CategoryRepository
+     */
+    private $categoryRepository;
 
     /**
      * ProductController constructor.
      * @param ProductService $productService
      * @param ProductRepository $productRepository
+     * @param CategoryRepository $categoryRepository
      */
     public function __construct(ProductService $productService,
-                                ProductRepository $productRepository)
+                                ProductRepository $productRepository,
+                                CategoryRepository $categoryRepository)
     {
         $this->productService = $productService;
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -52,7 +60,8 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view('products.create');
+        return view('products.create')
+            ->with('categories', $this->categoryRepository->GetAllCategories());
     }
 
     /**
@@ -90,7 +99,9 @@ class ProductController extends Controller
     public function edit(string $id): View
     {
         return \view('products.edit')
-            ->with('product', $this->productRepository->GetProductByHash($id));
+            ->with('product', $this->productRepository->GetProductByHash($id))
+            ->with('categories', $this->categoryRepository->GetAllCategories()->toArray())
+            ->with('product_categories',$this->productRepository->GetProductByHash($id)->categories()->pluck('id')->toArray());
     }
 
 
@@ -103,7 +114,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id):RedirectResponse
     {
-       $product = $this->productRepository->UpdateProductByHash($request->validated(),$id);
+        $product =$this->productService->UpdateExistingProduct($request->validated(), $id);
+
         return redirect(route('product.show', $product->unique_hash));
     }
 
