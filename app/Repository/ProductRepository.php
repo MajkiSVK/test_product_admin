@@ -5,6 +5,7 @@ namespace App\Repository;
 
 
 use App\Models\Product;
+use phpDocumentor\Reflection\Types\Mixed_;
 
 class ProductRepository
 {
@@ -22,5 +23,14 @@ class ProductRepository
         $product->unique_hash = $hash;
         $product->save();
         return $product;
+    }
+
+    /**
+     * @param string $unique_hash
+     * @return Product
+     */
+    public function GetProductByHash(string $unique_hash):Product
+    {
+        return Product::where('unique_hash', $unique_hash)->firstOrFail();
     }
 }

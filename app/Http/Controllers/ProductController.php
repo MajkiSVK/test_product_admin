@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
 use App\Models\Product;
+use App\Repository\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,14 +16,21 @@ class ProductController extends Controller
      * @var ProductService
      */
     private $productService;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
     /**
      * ProductController constructor.
      * @param ProductService $productService
+     * @param ProductRepository $productRepository
      */
-    public function __construct(ProductService $productService)
+    public function __construct(ProductService $productService,
+                                ProductRepository $productRepository)
     {
         $this->productService = $productService;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -62,11 +70,13 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+
+        return \view('products.show')
+                 ->with('product', $this->productRepository->GetProductByHash($id));
     }
 
     /**

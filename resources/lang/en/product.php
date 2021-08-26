@@ -18,5 +18,11 @@ return [
     'desc' => 'Description',
     'save' => 'Create new product',
     'created' => 'New product was successfully created',
+    'view' => 'Product view',
+    'unique_hash' => 'Unique hash code',
+    'created_at' => 'Created at',
+    'updated_at' => 'Last update',
+    'edit' => 'Edit',
+    'destroy' => 'Delete',
 
 ];
