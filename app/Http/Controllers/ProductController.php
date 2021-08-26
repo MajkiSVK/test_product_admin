@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Repository\ProductRepository;
 use App\Services\ProductService;
@@ -82,24 +83,27 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $id
+     * @return View
      */
-    public function edit($id)
+    public function edit(string $id): View
     {
-        //
+        return \view('products.edit')
+            ->with('product', $this->productRepository->GetProductByHash($id));
     }
+
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateProductRequest $request
+     * @param $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id):RedirectResponse
     {
-        //
+       $product = $this->productRepository->UpdateProductByHash($request->validated(),$id);
+        return redirect(route('product.show', $product->unique_hash));
     }
 
     /**
