@@ -23,7 +23,24 @@
 
 
             <!-- Settings Dropdown -->
+
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                @if(app()->getLocale() == 'en')
+                    <x-nav-link :href="route('setLanguage', 'en')" active>
+                        {{ __('auth.en') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('setLanguage', 'sk')" >
+                        {{ __('auth.sk') }}
+                    </x-nav-link>
+                @elseif(app()->getLocale() == 'sk')
+                    <x-nav-link :href="route('setLanguage', 'en')" >
+                        {{ __('auth.en') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('setLanguage', 'sk')" active>
+                        {{ __('auth.sk') }}
+                    </x-nav-link>
+                @endif
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -45,7 +62,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('auth.logout') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -90,7 +107,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('auth.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>
