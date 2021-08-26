@@ -18,8 +18,14 @@
                 <x-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required />
             </div>
 
-
-
+            <div class="mt-4">
+             <x-label for="description" value="{{trans('product.categories')}}" />
+                @forelse($categories as $category)
+                    <x-input id="description" class="mt-1 ml-3" type="checkbox" name="categories[]" value="{{$category->id}}"/>{{$category->name}}
+                @empty
+                    {{__('product.empty_categories')}}
+                @endforelse
+            </div>
             <div class="flex items-center justify-end mt-4">
 
                 <x-button class="ml-4">

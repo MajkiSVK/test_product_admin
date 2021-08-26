@@ -30,7 +30,8 @@ class ProductService
     public function StoreNewProduct(array $validatedData): Product
     {
         $unique_hash = substr(md5(now().$validatedData['name']), 0, 16);
-
-        return $this->productRepository->CreateNewProduct($validatedData, $unique_hash);
+        $product = $this->productRepository->CreateNewProduct($validatedData, $unique_hash);
+        $product->categories()->sync($validatedData['categories']);
+        return $product;
     }
 }

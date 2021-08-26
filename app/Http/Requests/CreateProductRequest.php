@@ -26,6 +26,7 @@ class CreateProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:2000',
+            'categories' => 'array'
         ];
     }
 }
