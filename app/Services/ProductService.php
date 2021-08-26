@@ -31,6 +31,9 @@ class ProductService
      */
     public function StoreNewProduct(array $validatedData): Product
     {
+        if (!isset($validatedData['categories'])){
+            $validatedData['categories'] = [];
+        }
         $unique_hash = substr(md5(now().$validatedData['name']), 0, 16);
         $product = $this->productRepository->CreateNewProduct($validatedData, $unique_hash);
         $product->categories()->sync($validatedData['categories']);
@@ -48,6 +51,9 @@ class ProductService
      */
     public function UpdateExistingProduct(array $validatedData, string $id): Product
     {
+        if (!isset($validatedData['categories'])){
+            $validatedData['categories'] = [];
+        }
         $product = $this->productRepository->UpdateProductByHash($validatedData,$id);
         $product->categories()->sync($validatedData['categories']);
         return $product;
