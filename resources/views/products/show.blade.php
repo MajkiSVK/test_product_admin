@@ -44,7 +44,15 @@
                 {{$product->updated_at}}
             </p>
 
-
+            <!-- Categories list -->
+            <strong class="text-sm">{{__('product.categories')}}</strong>
+            <p>
+                @forelse($product->categories as $category)
+                    {{$category['name']}} |
+                @empty
+                    {{__('product.empty_categories')}}
+                @endforelse
+            </p>
 
             <!-- Edit button -->
             <div class="flex items-center justify-end mt-4">

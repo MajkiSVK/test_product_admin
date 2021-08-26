@@ -26,5 +26,7 @@ return [
     'destroy' => 'Delete',
     'deleted' => 'Product is deleted',
     'nothing' => 'there are no products',
+    'categories' => 'Categories',
+    'empty_categories' => 'There are no categories',
 
 ];
