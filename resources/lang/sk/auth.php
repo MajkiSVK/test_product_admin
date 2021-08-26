@@ -19,5 +19,7 @@ return [
     'wrong' => 'Hups! Niečo sa pokazilo',
     'logout' => 'Odhlásiť',
     'login' => 'Prihlásiť',
+    'en' => 'Anglický',
+    'sk' => 'Slovenský',
 
 ];

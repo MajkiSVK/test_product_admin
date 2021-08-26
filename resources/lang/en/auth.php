@@ -19,5 +19,7 @@ return [
     'wrong' => 'Whoops! Something went wrong.',
     'logout' => 'Log Out',
     'login' => 'Log In',
+    'en' => 'English',
+    'sk' => 'Slovak',
 
 ];

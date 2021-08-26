@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/setlanguage/{lang}', [AuthenticatedSessionController::class, 'setLanguage'])->name('setLanguage')->middleware(['auth']);
 
 Route::get('/', [ProductController::class, 'index'])->name('home')->middleware(['auth']);
 Route::resource('product', ProductController::class)->except('index')->middleware(['auth']);
