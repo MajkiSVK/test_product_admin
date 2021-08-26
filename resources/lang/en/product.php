@@ -31,5 +31,6 @@ return [
     'edit_existing' => 'Edit product',
     'show' => 'Product details',
     'homepage' => 'Home',
+    'eddited' => 'Product was eddited',
 
 ];

@@ -114,7 +114,8 @@ class ProductController extends Controller
     {
         $product =$this->productService->UpdateExistingProduct($request->validated(), $id);
 
-        return redirect(route('product.show', $product->unique_hash));
+        return redirect(route('product.show', $product->unique_hash))
+            ->with('message', __('product.eddited'));
     }
 
 
