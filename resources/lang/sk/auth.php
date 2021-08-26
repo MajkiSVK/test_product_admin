@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'wrong' => 'Whoops! Something went wrong.',
-    'logout' => 'Log Out',
-    'login' => 'Log In',
+    'failed' => 'Nesprávne prihlasovacie údaje',
+    'password' => 'Zadané heslo je nesprávne.',
+    'throttle' => 'Príliš veľa pokusov o prihlásenie. skús znova za :seconds sekúnd.',
+    'wrong' => 'Hups! Niečo sa pokazilo',
+    'logout' => 'Odhlásiť',
+    'login' => 'Prihlásiť',
 
 ];
