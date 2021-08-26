@@ -34,7 +34,7 @@ class ProductService
         $unique_hash = substr(md5(now().$validatedData['name']), 0, 16);
         $product = $this->productRepository->CreateNewProduct($validatedData, $unique_hash);
         $product->categories()->sync($validatedData['categories']);
-        $this->SendNotificationMail('44mikulas.tomas@gmail.com',
+        $this->SendNotificationMail('admin@test.com',
             'new product',
             'new product was added',
             15);
