@@ -24,5 +24,6 @@ return [
     'updated_at' => 'Last update',
     'edit' => 'Edit',
     'destroy' => 'Delete',
+    'deleted' => 'Product is deleted',
 
 ];

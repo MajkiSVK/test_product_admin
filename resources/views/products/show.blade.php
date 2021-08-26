@@ -59,11 +59,13 @@
             <!-- Delete button -->
             <div class="flex items-center justify-end mt-4">
 
-                <a href="{{route('product.destroy',$product->unique_hash)}}"
+                <form method="POST" action="{{ route('product.destroy', $product->unique_hash) }}">
+                    @csrf
+                    {{method_field('DELETE')}}
                 <x-button class="ml-4 bg-blue-200">
                     {{ __('product.destroy') }}
                 </x-button>
-                </a>
+                </form>
             </div>
 
         </article>

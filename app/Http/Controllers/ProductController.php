@@ -106,14 +106,18 @@ class ProductController extends Controller
         return redirect(route('product.show', $product->unique_hash));
     }
 
+
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Delete the specified resource
+     * @param string $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $product = $this->productRepository->GetProductByHash($id);
+        $product->delete();
+
+        return redirect(route('home'))
+            ->with('message', __('product.deleted'));
     }
 }
