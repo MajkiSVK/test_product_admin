@@ -95,6 +95,21 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
+                @if(app()->getLocale() == 'en')
+                    <x-nav-link :href="route('setLanguage', 'en')" active>
+                        {{ __('auth.en') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('setLanguage', 'sk')" >
+                        {{ __('auth.sk') }}
+                    </x-nav-link>
+                @elseif(app()->getLocale() == 'sk')
+                    <x-nav-link :href="route('setLanguage', 'en')" >
+                        {{ __('auth.en') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('setLanguage', 'sk')" active>
+                        {{ __('auth.sk') }}
+                    </x-nav-link>
+                @endif
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
