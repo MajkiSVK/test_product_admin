@@ -32,5 +32,6 @@ return [
     'show' => 'Product details',
     'homepage' => 'Home',
     'eddited' => 'Product was eddited',
+    'create' => 'Create',
 
 ];
