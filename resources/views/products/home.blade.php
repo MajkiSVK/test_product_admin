@@ -1,4 +1,7 @@
 @extends('products.master')
+    @section('title')
+        {{__('product.homepage')}}
+    @stop
     @section('content')
 
         @forelse($products as $product)

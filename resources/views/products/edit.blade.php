@@ -1,4 +1,7 @@
 @extends('products.master')
+    @section('title')
+        {{__('product.edit_existing')}}
+    @stop
     @section('content')
 
         <form method="POST" action="{{ route('product.update', $product->unique_hash) }}">

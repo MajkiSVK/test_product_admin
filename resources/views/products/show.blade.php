@@ -1,4 +1,7 @@
 @extends('products.master')
+    @section('title')
+        {{__('product.show')}}
+    @stop
     @section('content')
 
 

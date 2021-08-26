@@ -1,4 +1,7 @@
 @extends('products.master')
+    @section('title')
+        {{__('product.create_new')}}
+    @stop
     @section('content')
 
         <form method="POST" action="{{ route('product.store') }}">
