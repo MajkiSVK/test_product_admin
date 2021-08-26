@@ -4,8 +4,10 @@
 namespace App\Services;
 
 
+use App\Mail\SendNotificationToAdminMail;
 use App\Models\Product;
 use App\Repository\ProductRepository;
+use Illuminate\Support\Facades\Mail;
 
 class ProductService
 {
@@ -32,6 +34,10 @@ class ProductService
         $unique_hash = substr(md5(now().$validatedData['name']), 0, 16);
         $product = $this->productRepository->CreateNewProduct($validatedData, $unique_hash);
         $product->categories()->sync($validatedData['categories']);
+        $this->SendNotificationMail('44mikulas.tomas@gmail.com',
+            'new product',
+            'new product was added',
+            15);
         return $product;
     }
 
@@ -45,5 +51,13 @@ class ProductService
         $product = $this->productRepository->UpdateProductByHash($validatedData,$id);
         $product->categories()->sync($validatedData['categories']);
         return $product;
+    }
+
+    private function SendNotificationMail(string $mailTo,
+                                          string $subject,
+                                          string $report,
+                                          int $minuteDelay){
+        return Mail::to($mailTo)
+            ->later(now()->addMinutes($minuteDelay), new SendNotificationToAdminMail($subject, $report));
     }
 }
