@@ -49,7 +49,7 @@
             <!-- Edit button -->
             <div class="flex items-center justify-end mt-4">
 
-                <a href="{{route('product.edit', $product->unique_hash)}}"
+                <a href="{{route('product.edit', $product->unique_hash)}}">
                     <x-button class="ml-4 bg-blue-200">
                       {{ __('product.edit') }}
                     </x-button>
