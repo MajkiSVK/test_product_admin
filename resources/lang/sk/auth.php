@@ -21,5 +21,7 @@ return [
     'login' => 'Prihlásiť',
     'en' => 'Anglický',
     'sk' => 'Slovenský',
+    'remember' => 'Zapamätať si ma',
+    'password_input' => 'Heslo',
 
 ];
