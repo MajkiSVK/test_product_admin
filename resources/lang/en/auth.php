@@ -21,5 +21,7 @@ return [
     'login' => 'Log In',
     'en' => 'English',
     'sk' => 'Slovak',
+    'remember' => 'Remember me',
+    'password_input' => 'Password',
 
 ];
